@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happiest 20th Birthday 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(180deg,#fffdfd,#fff8f9,#fffdf8);
+overflow-x:hidden;
+color:#555;
+}
+
+/* Floating Hearts */
+
+.hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:-2;
+}
+
+.hearts span{
+position:absolute;
+bottom:-80px;
+font-size:26px;
+opacity:.7;
+animation:heartFloat linear infinite;
+}
+
+.hearts span:nth-child(1){left:5%;animation-duration:13s;}
+.hearts span:nth-child(2){left:18%;animation-duration:15s;}
+.hearts span:nth-child(3){left:32%;animation-duration:12s;}
+.hearts span:nth-child(4){left:48%;animation-duration:17s;}
+.hearts span:nth-child(5){left:64%;animation-duration:14s;}
+.hearts span:nth-child(6){left:80%;animation-duration:16s;}
+.hearts span:nth-child(7){left:92%;animation-duration:13s;}
+
+@keyframes heartFloat{
+0%{
+transform:translateY(0) rotate(0deg) scale(.5);
+opacity:0;
+}
+20%{
+opacity:.7;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg) scale(1.3);
+opacity:0;
+}
+}
+
+/* Falling Petals */
+
+.petals{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+z-index:-1;
+}
+
+.petals span{
+position:absolute;
+top:-50px;
+font-size:24px;
+animation:petalFall linear infinite;
+}
+
+.petals span:nth-child(1){left:10%;animation-duration:10s;}
+.petals span:nth-child(2){left:25%;animation-duration:12s;}
+.petals span:nth-child(3){left:40%;animation-duration:14s;}
+.petals span:nth-child(4){left:60%;animation-duration:11s;}
+.petals span:nth-child(5){left:75%;animation-duration:13s;}
+.petals span:nth-child(6){left:90%;animation-duration:15s;}
+
+@keyframes petalFall{
+0%{
+transform:translateY(-80px) rotate(0deg);
+}
+100%{
+transform:translateY(120vh) rotate(360deg);
+}
+}
+
+/* Header */
+
+header{
+padding:90px 20px;
+text-align:center;
+}
+
+header h1{
+font-family:'Playfair Display',serif;
+font-size:54px;
+color:#b76e79;
+white-space:nowrap;
+overflow:hidden;
+width:0;
+margin:auto;
+border-right:3px solid #f4a6b9;
+animation:typing 4s steps(30,end) forwards,blink .8s infinite;
+}
+
+@keyframes typing{
+from{width:0;}
+to{width:100%;}
+}
+
+@keyframes blink{
+50%{
+border-color:transparent;
+}
+}
+
+header h2{
+margin-top:20px;
+font-size:26px;
+font-weight:400;
+color:#888;
+}
+
+header p{
+margin-top:20px;
+font-size:18px;
+line-height:1.8;
+max-width:650px;
+margin-inline:auto;
+}
+
+.container{
+width:90%;
+max-width:900px;
+margin:auto;
+}
+/* ---------- Memory Cards ---------- */
+
+.memory{
+position:relative;
+background:rgba(255,255,255,.95);
+padding:20px;
+margin:45px 0;
+border-radius:25px;
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+overflow:hidden;
+opacity:0;
+transform:translateY(60px);
+animation:fadeUp 1s forwards;
+}
+
+.memory:nth-of-type(1){animation-delay:.2s;}
+.memory:nth-of-type(2){animation-delay:.4s;}
+.memory:nth-of-type(3){animation-delay:.6s;}
+.memory:nth-of-type(4){animation-delay:.8s;}
+.memory:nth-of-type(5){animation-delay:1s;}
+
+.memory img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:20px;
+cursor:pointer;
+transition:.4s;
+}
+
+.memory img:hover{
+transform:scale(1.03);
+box-shadow:0 0 25px rgba(255,182,193,.5);
+}
+
+.memory h2{
+margin-top:20px;
+text-align:center;
+font-family:'Playfair Display',serif;
+color:#b76e79;
+}
+
+.memory p{
+margin-top:15px;
+font-size:17px;
+line-height:1.9;
+text-align:center;
+color:#666;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(60px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Heart Burst */
+
+.heartBurst{
+position:absolute;
+font-size:24px;
+pointer-events:none;
+animation:burst .9s forwards;
+}
+
+@keyframes burst{
+0%{
+opacity:1;
+transform:translate(0,0) scale(.5);
+}
+100%{
+opacity:0;
+transform:translate(var(--x),var(--y)) scale(1.6);
+}
+}
+
+/* Open Letter Button */
+
+#openLetter{
+display:block;
+margin:60px auto;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:#f7b7c8;
+color:#fff;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 10px 25px rgba(247,183,200,.5);
+}
+
+#openLetter:hover{
+transform:scale(1.08);
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:38px;
+}
+
+.memory img{
+height:270px;
+}
+
+.memory p{
+font-size:16px;
+}
+
+}
+#loadingScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(to bottom,#fff7fa,#fffdfd);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:99999;
+text-align:center;
+padding:20px;
+}
+
+#loadingScreen h1{
+font-size:48px;
+color:#b76e79;
+font-family:'Playfair Display',serif;
+margin-bottom:15px;
+}
+
+#loadingScreen p{
+font-size:18px;
+color:#777;
+margin-bottom:35px;
+}
+
+#startBtn{
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:#f7b7c8;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+#startBtn:hover{
+transform:scale(1.08);
+}
+</style>
+</head>
+
+<body>
+
+<div id="loadingScreen">
+    <h1>🎂 Happiest 20th Birthday 🤍</h1>
+    <p>A little surprise made with lots of love...</p>
+
+    <button id="startBtn">
+        ✨ Begin the Journey ✨
+    </button>
+</div>
+
+<div class="hearts">
+<span>🩷</span>
+<span>💖</span>
+<span>🤍</span>
+<span>💕</span>
+<span>💘</span>
+<span>🩷</span>
+<span>🤍</span>
+</div>
+
+<div class="petals">
+<span>💗</span>
+<span>💗</span>
+<span>💗</span>
+<span>💗</span>
+<span>💗</span>
+<span>💗</span>
+</div>
+
+<header>
+
+<h1> Happiest B'Day 💋🧿</h1>
+
+<h2>🤍 From Loshitha 🤍</h2>
+
+<p>
+Every smile, every memory and every moment with you
+became a beautiful chapter of my life.
+This little surprise is made with lots of love. ❤️
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="memory">
+<img src="photo1.jpg" alt="Photo 1">
+<h2>🌸 Our First Memory</h2>
+<p>
+Meeting you became one of the happiest moments of my life.
+Every memory with you will always stay close to my heart. 🤍
+</p>
+</div>
+
+<div class="memory">
+<img src="photo2.jpg" alt="Photo 2">
+<h2>💖 Thank You</h2>
+<p>
+Thank you for making ordinary days feel beautiful.
+Your presence has always brought happiness into my life. 🩷
+</p>
+</div>
+<div class="memory">
+<img src="photo3.jpg" alt="Photo 3">
+
+<h2>🤍 Forever Special</h2>
+
+<p>
+Some people become unforgettable without even trying.
+You are one of them.
+No matter where life takes us,
+you'll always have a special place in my heart. 🫠
+</p>
+
+</div>
+
+<div class="memory">
+<img src="photo4.jpg" alt="Photo 4">
+
+<h2>✨ Beautiful Connection</h2>
+
+<p>
+The bond we share is something I'll always cherish.
+Every smile, every conversation,
+and every memory with you means more than words can express.
+</p>
+
+</div>
+
+<div class="memory">
+<img src="photo5.jpg" alt="Photo 5">
+
+<h2>❤️ My Birthday Wish</h2>
+
+<p>
+May your smile never fade,
+your heart always stay happy,
+and every dream of yours come true.
+Happy 20th Birthday! 🤍
+</p>
+
+</div>
+
+<button id="openLetter">💌 Open My Letter 🤍</button>
+
+<!-- Letter Popup -->
+
+<div id="letterPopup">
+
+<div class="letterBox">
+
+<span id="closeLetter">&times;</span>
+
+<h2>🤍 A Letter For You 🤍</h2>
+
+<p>
+
+Happy Birthday ❤️
+
+Some people become special without even trying,
+and you are one of them.
+
+Thank you for every smile,
+every laugh,
+and every beautiful memory we've shared.🫠
+
+No matter where life takes us,
+I'll always cherish these moments.🫂
+
+Keep smiling,
+keep shining,
+and always be the wonderful person you are.
+
+✨ Forever Special 🩷
+
+— With Love,
+Loshitha
+
+</p>
+
+</div>
+
+</div>
+
+<style>
+
+#letterPopup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.letterBox{
+background:#fff;
+width:90%;
+max-width:650px;
+padding:35px;
+border-radius:25px;
+text-align:center;
+position:relative;
+animation:popup .5s ease;
+}
+
+.letterBox h2{
+font-family:'Playfair Display',serif;
+color:#b76e79;
+margin-bottom:20px;
+}
+
+.letterBox p{
+line-height:2;
+color:#666;
+}
+
+#closeLetter{
+position:absolute;
+top:15px;
+right:20px;
+font-size:30px;
+cursor:pointer;
+color:#b76e79;
+}
+
+@keyframes popup{
+from{
+transform:scale(.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+</style>
+<!-- 🎊 Celebrate Button -->
+
+<div style="text-align:center;margin:70px 0;">
+    <button id="celebrateBtn">😚 Celebrate Birthday 💘</button>
+</div>
+
+<canvas id="confetti"></canvas>
+
+<style>
+
+/* Celebrate Button */
+
+#celebrateBtn{
+padding:16px 38px;
+border:none;
+border-radius:50px;
+background:linear-gradient(135deg,#ffb6c1,#f78fb3);
+color:#fff;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 12px 30px rgba(247,143,179,.35);
+}
+
+#celebrateBtn:hover{
+transform:scale(1.08);
+}
+
+#confetti{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+pointer-events:none;
+z-index:999;
+}
+
+</style>
+
+<script>
+
+/* ❤️ Heart Burst */
+
+const images=document.querySelectorAll(".memory img");
+
+images.forEach(img=>{
+
+img.addEventListener("click",function(e){
+
+const card=this.parentElement;
+
+for(let i=0;i<12;i++){
+
+const heart=document.createElement("span");
+
+heart.className="heartBurst";
+
+heart.innerHTML=["🩷","💖","💕","🤍","💘","🌸"][Math.floor(Math.random()*5)];
+
+heart.style.left=e.offsetX+"px";
+heart.style.top=e.offsetY+"px";
+
+heart.style.setProperty("--x",(Math.random()*180-90)+"px");
+heart.style.setProperty("--y",(Math.random()*180-90)+"px");
+
+card.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},900);
+
+}
+
+});
+
+});
+
+/* 💌 Letter Popup */
+
+const openBtn=document.getElementById("openLetter");
+const popup=document.getElementById("letterPopup");
+const closeBtn=document.getElementById("closeLetter");
+
+openBtn.onclick=()=>{
+popup.style.display="flex";
+}
+
+closeBtn.onclick=()=>{
+popup.style.display="none";
+}
+
+window.onclick=(e)=>{
+if(e.target===popup){
+popup.style.display="none";
+}
+};
+
+</script>
+<script>
+
+/* ---------- Confetti ---------- */
+
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+let confetti = [];
+
+function Piece(){
+  this.x = Math.random() * canvas.width;
+  this.y = -20;
+  this.r = Math.random() * 6 + 4;
+  this.speed = Math.random() * 4 + 2;
+  this.color = ["#ffb6c1","#ffc2d1","#ffd6e0","#ffffff","#f8a5c2"][Math.floor(Math.random()*5)];
+
+  this.draw = function(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
+
+  this.update = function(){
+    this.y += this.speed;
+    this.x += Math.sin(this.y*0.03);
+
+    if(this.y > canvas.height + 20){
+      this.y = -20;
+    }
+
+    this.draw();
+  }
+}
+
+function launchConfetti(){
+
+  canvas.style.display="block";
+
+  confetti=[];
+
+  for(let i=0;i<180;i++){
+    confetti.push(new Piece());
+  }
+
+  animateConfetti();
+
+  setTimeout(()=>{
+    canvas.style.display="none";
+  },7000);
+
+}
+
+function animateConfetti(){
+
+  if(canvas.style.display!="block") return;
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  confetti.forEach(c=>c.update());
+
+  requestAnimationFrame(animateConfetti);
+
+}
+
+document.getElementById("celebrateBtn").onclick = launchConfetti;
+
+</script>
+
+<section class="final-message">
+
+<h2>🤍 Thank You For Being Part Of My Story 🤍</h2>
+
+<p>
+Some memories never fade.
+
+Every smile,
+every conversation,
+and every beautiful moment with you
+will always stay close to my heart.
+
+Happy 20th Birthday! 🎂❤️
+</p>
+
+</section>
+
+<footer>
+
+<h2>🎂 Happiest 20th Birthday 🎂</h2>
+
+<p>
+
+May your smile never fade.<br>
+May your heart always stay happy.<br>
+May every dream of yours come true.
+
+<br><br>
+
+🤍 Forever Special 🤍
+
+<br><br>
+
+Made with lots of love ❤️
+
+<br>
+
+<b>— From Loshitha 🤍</b>
+
+</p>
+
+</footer>
+
+<style>
+
+.final-message{
+padding:80px 20px;
+text-align:center;
+}
+
+.final-message h2{
+font-family:'Playfair Display',serif;
+font-size:40px;
+color:#b76e79;
+margin-bottom:20px;
+animation:glow 3s infinite;
+}
+
+.final-message p{
+max-width:700px;
+margin:auto;
+font-size:18px;
+line-height:2;
+color:#666;
+}
+
+footer{
+margin-top:50px;
+padding:70px 20px;
+text-align:center;
+background:linear-gradient(to bottom,#fff5f8,#ffeef4);
+}
+
+footer h2{
+font-family:'Playfair Display',serif;
+font-size:38px;
+color:#b76e79;
+margin-bottom:20px;
+}
+
+footer p{
+font-size:18px;
+line-height:2;
+color:#666;
+}
+
+@keyframes glow{
+0%,100%{
+text-shadow:0 0 0px #ffb6c1;
+}
+50%{
+text-shadow:0 0 18px #ffb6c1;
+}
+}
+
+</style>
+<script>
+
+const loading=document.getElementById("loadingScreen");
+
+document.getElementById("startBtn").onclick=function(){
+
+loading.style.display="none";
+
+}
+
+</script>
+</body>
+  </html>
