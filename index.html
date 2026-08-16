@@ -84,6 +84,7 @@ header p{margin-top:20px;font-size:18px;line-height:1.8;max-width:650px;margin-i
 #revealBtn:disabled{cursor:default;opacity:.85}
 #hiddenSurprise{display:none;margin-top:45px;padding:45px 25px;background:rgba(255,255,255,.92);border-radius:30px;box-shadow:0 20px 50px rgba(183,110,121,.15);animation:surpriseReveal 1.2s ease forwards}
 #hiddenSurprise.show{display:block}
+#hiddenSurprise.show + .surprise-video{display:block}
 .big-heart{font-size:70px;animation:heartBeat 1.3s infinite}
 #hiddenSurprise h3{margin-top:20px;font-family:'Playfair Display',serif;font-size:38px;color:#b76e79}
 #hiddenSurprise p{margin-top:20px;font-size:17px;line-height:2;color:#666}
@@ -99,6 +100,43 @@ footer{margin-top:50px;padding:70px 20px;text-align:center;background:linear-gra
 footer h2{font-family:'Playfair Display',serif;font-size:38px;color:#b76e79;margin-bottom:20px}
 footer p{font-size:18px;line-height:2;color:#666}
 @keyframes glow{0%,100%{text-shadow:0 0 0 #ffb6c1}50%{text-shadow:0 0 18px #ffb6c1}}
+
+
+/* 🎬 Surprise Video */
+.surprise-video{display:none;
+    margin-top:40px;
+    padding:25px 18px;
+    background:rgba(255,255,255,.92);
+    border-radius:28px;
+    box-shadow:0 20px 50px rgba(183,110,121,.15);
+    animation:videoReveal 1.2s ease forwards;
+}
+.video-title{
+    font-family:'Playfair Display',serif;
+    font-size:28px;
+    color:#b76e79;
+    margin-bottom:20px;
+}
+.surprise-video video{
+    width:100%;
+    max-width:650px;
+    max-height:75vh;
+    border-radius:20px;
+    display:block;
+    margin:auto;
+    background:#000;
+    box-shadow:0 12px 35px rgba(0,0,0,.15);
+}
+.video-caption{
+    margin-top:18px;
+    color:#777;
+    font-size:16px;
+    line-height:1.8;
+}
+@keyframes videoReveal{
+    from{opacity:0;transform:translateY(35px) scale(.96)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
 
 @media(max-width:768px){
 header h1{font-size:38px}
@@ -223,6 +261,18 @@ And always remember...<br><br>
 <div class="final-hearts">🩷 💖 🤍 💕 💘 🤍 💖 🩷</div>
 <h4>— With Lots Of Love, Loshitha 🤍</h4>
 </div>
+
+
+<!-- 🎬 FINAL SURPRISE VIDEO -->
+<div id="surpriseVideo" class="surprise-video">
+    <p class="video-title">🎬 A Little Something For You 🤍</p>
+    <video controls playsinline preload="metadata">
+        <source src="1000242552.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p class="video-caption">Made with lots of love, just for you. 🫂❤️</p>
+</div>
+
 </div>
 </section>
 
@@ -314,9 +364,11 @@ document.getElementById("celebrateBtn").onclick=launchConfetti;
 /* Final Surprise */
 const revealBtn=document.getElementById("revealBtn");
 const hiddenSurprise=document.getElementById("hiddenSurprise");
+const surpriseVideo=document.querySelector("#surpriseVideo video");
 
 revealBtn.addEventListener("click",function(){
 hiddenSurprise.classList.add("show");
+if(surpriseVideo){ surpriseVideo.muted=true; surpriseVideo.play().catch(()=>{}); }
 revealBtn.innerHTML="🤍 Surprise Opened 🤍";
 revealBtn.disabled=true;
 
@@ -351,4 +403,3 @@ hiddenSurprise.scrollIntoView({behavior:"smooth",block:"center"});
 
 </body>
 </html>
-
